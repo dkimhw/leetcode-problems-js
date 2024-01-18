@@ -65,7 +65,7 @@ const merge = (nums1, m, nums2, n) => {
   let ptr2 = 0;
   let numsCopy1 = nums1.slice(0, m);
   for(let idx = 0; idx < nums1.length; idx++) {
-    if (numsCopy1[ptr1] <= nums2[ptr2]) {
+    if (numsCopy1[ptr1] <= nums2[ptr2] || nums2[ptr2] === undefined) {
       nums1[idx] = numsCopy1[ptr1];
       ptr1++;
     } else {
@@ -73,8 +73,6 @@ const merge = (nums1, m, nums2, n) => {
       ptr2++;
     }
   }
-
-  console.log("hello", nums1);
 }
 
 module.exports = merge;

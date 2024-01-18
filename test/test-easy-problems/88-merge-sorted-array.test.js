@@ -15,7 +15,6 @@ describe("merge", () => {
   });
 
   // test 2
-  Input: nums1 = [0], m = 0, nums2 = [1], n = 1
   const nums1_test2 = [0];
   const m_test2 = 0;
   const nums2_test2 = [1];
@@ -24,5 +23,16 @@ describe("merge", () => {
   test("returns true if merged correctly", () => {
     merge(nums1_test2, m_test2, nums2_test2, n_test2);
     expect(nums1_test2).toStrictEqual([1]);
+  });
+
+  // test 3
+  const nums1_test3 = [1];
+  const m_test3 = 1;
+  const nums2_test3 = [];
+  const n_test3 = 0;
+
+  test("returns true if merged correctly", () => {
+    merge(nums1_test2, m_test2, nums2_test2, n_test2);
+    expect(nums1_test3).toStrictEqual([1]);
   });
 })
