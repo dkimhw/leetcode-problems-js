@@ -38,6 +38,13 @@ Attemp 1:
 Because of the splice function - this will O(n^2) in the worst case
 
 Attemp 2:
+- Use two pointers (idx - using the for loop counter; jdx)
+- For loop idx to nums.length - 1
+  - Each idx:
+    - if nums[idx] !== nums[jdx] - that means we found a new unique value at idx
+    - replace: nums[jdx] = nums[idx]
+- Then jdx represents that last unique value in the nums
+  - return jdx + 1 (array index starts at 0)
 
 */
 
@@ -58,18 +65,18 @@ Attemp 2:
  * @return {number}
  */
 const removeDuplicates = (nums) => {
-  let currentVal = nums[0];
+  let jdx = 0;
 
   for (let idx = 0; idx < nums.length; idx++) {
-    if (nums[idx + 1] === currentVal) {
-      nums[idx] = null;
-    } else {
-      currentVal = nums[idx + 1];
+    if (nums[idx] !== nums[jdx]) {
+      // increment by 1 first since we want to ensure that the next element is unique
+      jdx++;
+      nums[jdx] = nums[idx];
     }
   }
 
-  console.log(nums);
-  return nums.filter(el => el !== null).length;
+  // console.log(nums);
+  return jdx + 1;
 }
 
 module.exports = removeDuplicates;
