@@ -4,12 +4,12 @@ const removeDuplicates = require('../../easy-problems/26-rmv-duplicates-sorted-a
 // test for mutation
 describe("removeDuplicates", () => {
   // test 1
-  // const nums_test1 = [1,1,2];
-  // const result1 = removeDuplicates(nums_test1);
+  const nums_test1 = [1,1,2];
+  const result1 = removeDuplicates(nums_test1);
 
-  // test("test1: returns true if duplicate elements were removed correctly", () => {
-  //   expect(result1).toEqual(2);
-  // });
+  test("test1: returns true if duplicate elements were removed correctly", () => {
+    expect(result1).toEqual(2);
+  });
 
   // test 2
   const nums_test2 = [0,0,1,1,1,2,2,3,3,4];
