@@ -48,14 +48,38 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 Algorithms
 -----------------------
 - create two pointers: idx & jdx (idx - ptr tracking the for loop)
+- create a variable `counter`
+  - this will track whether there are unwanted elements i.e. > 2 of the same elements
 - for loop
-  - check whether we should move the second pointer up by 2 or 1 (jdx)
+  - check nums[idx] !== nums[idx - 1]
+    - if true:
+      - reset counter to 1
+    - else false:
+      - increment counter
+  - if counter > 2
+    - do not move up jdx
   - check if nums[idx] != nums[jdx] - this means that there is a new unique element that we want to use
-    - increment jdx
     - nums[jdx] = nums[idx]
 - return jdx + 1
 
 [0,0,1,1,1,1,2,3,3]
+[1,1,1,2,2,3]
+
+
+[0,0,1,1,1,1,2,3,3]
+
+At idx = 1:
+- counter = 2
+- jdx = 1
+
+At idx = 2:
+- counter = 1
+- jdx = 2
+
+At idx = 3:
+- counter = 2
+- jdx =
+
 
 */
 
@@ -65,36 +89,29 @@ Algorithms
  */
 const removeDuplicates = function(nums) {
   let jdx = 0;
-  let stop2ndPointer = false;
-  let prev2ndPointerVal = nums[0];
+  let cnt = 1;
 
-  for (let idx = 0; idx < nums.length; idx++) {
-    // check 2nd pointer
-    if ( (nums[jdx] === nums[jdx + 1]) && !stop2ndPointer ) {
-      jdx += 2;
-      stop2ndPointer = true;
+  for (let idx = 1; idx < nums.length; idx++) {
+    // check previous value
+    if (nums[idx] !== nums[idx - 1]) {
+      cnt = 1;
+    } else {
+      cnt++;
     }
 
-    console.log("before", jdx, idx, nums)
-
-    // check for unique element
-    if (jdx < idx && nums[jdx] !== nums[idx] && stop2ndPointer) {
-      //jdx++;
-      nums[jdx++] = nums[idx];
-      stop2ndPointer = false;
-    } else if (jdx < idx && nums[jdx] !== nums[idx]) {
-      nums[jdx++] = nums[idx];
-    } else if (nums[idx] !== prev2ndPointerVal && nums[idx] === nums[idx+1]) {
-      prev2ndPointerVal = nums[idx];
-      jdx += 2;
-      stop2ndPointer = true;
+    // increment jdx if counter is less
+    if (cnt <= 2) {
+      jdx++;
     }
 
-    console.log("after", jdx, idx, nums)
-
+    if (nums[idx] !== nums[jdx]) {
+      nums[jdx] = nums[idx];
+    }
   }
 
-  // console.log(jdx, nums);
+  // console.log(nums);
+  return jdx + 1;
+
 };
 
-removeDuplicates([0,0,1,1,1,1,2,3,3])
+module.exports = removeDuplicates;
